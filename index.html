@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Unisteria Client</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Unisteria Client</h1>
+        <button class="download" onclick="window.open('https://qiwi.gg/file/tiiQ7171-UnisteriaV4')"><i class='bx bx-download'></i> Download</button>
+    </div>
+    <script>
+        const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fadein-animation');
+      }
+    });
+  });
+  
+  observer.observe(document.querySelector('.main'));
+      </script>
+</body>
+</html>
