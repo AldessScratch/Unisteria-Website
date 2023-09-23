@@ -22,17 +22,17 @@ body {
     flex-direction: column;
     width: 100%;
     height: calc(100vh - 80px);
-    animation-name: fadeIn;
-    animation-duration: 1.5s;
 }
 h1 {
-    font-size: 50px;
+    font-size: 52px;
     color: #242466;
     font-weight: 600;
     filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
     text-align: center;
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
 }
-.download {
+button {
     margin-top: 50px;
     margin-right: 20px;
     padding: 10px;
@@ -42,7 +42,8 @@ h1 {
     font-weight: 500;
     color: #262672;
     filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.4));
-    background-color: #ffffff;
+    background-color: #ffffff1e;
+    backdrop-filter: blur(10px);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     transform: scale(1);
@@ -104,10 +105,38 @@ button:hover {
     height: 30px;
     width: 30px;
     margin: 10px;
+    filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
 }
 .socials img:hover{
     transform: scale(1.1);
 }
 .socials img:not(:hover){
     transition-delay: .1s;
+}
+footer {
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    min-height: 60px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    background-color: #1f1f1f81;
+    display: flex;
+    justify-content: space-between;
+    position: static;
+    margin-bottom: 0;
+    bottom: 0;
+}
+footer p {
+    text-align: center;
+   font-weight: 300;
+   margin: 20px;
+   color: #fff;
+   filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
+}
+a {
+    text-decoration: none;
+    color: white;
 }
