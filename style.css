@@ -156,8 +156,12 @@ a {
     height: 500px;
   }
 iframe {
-    border-radius: 15px;
+    border-radius: 25px;
     filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
     padding-left: 10px;
     padding-right: 10px;
   }
+  .blur {
+    backdrop-filter: blur(10px);
+  }
+  
