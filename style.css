@@ -22,6 +22,8 @@ body {
     flex-direction: column;
     width: 100%;
     height: calc(100vh - 80px);
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
 }
 h1 {
     font-size: 52px;
@@ -29,8 +31,7 @@ h1 {
     font-weight: 600;
     filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
     text-align: center;
-    animation-name: fadeIn;
-    animation-duration: 1.5s;
+    
 }
 button {
     margin-top: 50px;
