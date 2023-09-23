@@ -30,7 +30,7 @@ h1 {
     font-size: 52px;
     color: #242466;
     font-weight: 600;
-    filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
+    filter: drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.4));
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
@@ -44,7 +44,7 @@ button {
     font-size: 20px;
     font-weight: 500;
     color: #262672;
-    filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.4));
+    filter: drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.4));
     background-color: #ffffff1e;
     backdrop-filter: blur(10px);
     cursor: pointer;
@@ -85,7 +85,7 @@ button:hover {
     margin-left: 10px;
     cursor: pointer;
     color: #242466;
-    filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.4));
+    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.4));
 }
 .socials{
     position: absolute;
@@ -164,4 +164,11 @@ iframe {
   .blur {
     backdrop-filter: blur(10px);
   }
-  
+
+h3 {
+    text-align: center;
+    color: #242466;
+    filter: drop-shadow(1px 1px 2px rgba(255, 255, 255, 0.4));
+    font-size: 25px;
+    font-weight: 500;
+}
