@@ -220,16 +220,26 @@ a {
     .navbar p {
        display: none;
     }
+    
+    iframe {
+        width: 90vw; height: 50vw;
+    }
+    .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 900px) {
     .center {
         display: flex;
         align-items: center;
         flex-direction: column;
         justify-content: center;
-    }
+    }h1 {text-align: center;}
     h4 {text-align: center;}
-    iframe {
-        width: 90vw; height: 50vw;
-    }
+
   }
   .video {
     flex-direction: column;
