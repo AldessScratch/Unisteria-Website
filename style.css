@@ -6,6 +6,7 @@
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 body {
@@ -38,6 +39,7 @@ body {
     animation-name: fadeIn;
     animation-duration: 1.5s;
     filter: drop-shadow(2px 2px 5px rgba(61, 61, 61, 0.4));
+    scroll-snap-align: center;
 }
 h1 {
     font-size: 55px;
@@ -247,6 +249,7 @@ a {
     align-items: center;
     display: flex;
     height: 500px;
+    scroll-snap-align: center;
   }
 iframe {
     margin-top: 20px;
@@ -269,6 +272,7 @@ h4 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    scroll-snap-align: center;
 }
 .slideshow-container img {
     border-radius: 20px;
@@ -346,6 +350,7 @@ h4 {
   .prev, .next,.text {font-size: 11px}
 }
 .screens {
+    scroll-snap-align: center;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
