@@ -6,7 +6,6 @@
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
 }
 
 body {
