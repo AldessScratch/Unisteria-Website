@@ -5,7 +5,6 @@
     box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
     text-decoration: none;
-    scroll-behavior: smooth;
 }
 
 body {
@@ -21,12 +20,11 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #A9C9FF;
-    background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+    background-image: linear-gradient(146deg, #371472 0%, #000000 100%);
 }
 .main {
     border-radius: 50px;
     margin-top: 13vh;
-    background-image: url(./img/bg.webp);
     background-position: center;
     background-size: cover;
     width: 90%;
@@ -62,7 +60,7 @@ h3 {
     margin-top: 50px;
     margin-right: 20px;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 50px;
     border: 0;
     font-size: 20px;
     font-weight: 500;
@@ -82,7 +80,7 @@ i {
     align-items: center;
     margin-left: 15px;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 50px;
     border: 0;
     font-size: 20px;
     font-weight: 500;
@@ -124,16 +122,15 @@ button:hover {
     width: 100%;
     height: 65px;
     justify-content: space-between;
-    background-color: #a9c9ff81;
-    background-image: linear-gradient(10deg, #a9c9ff52 0%, #c1bbff45 100%);
+    background-color: transparent;
     backdrop-filter: blur(10px);
 }
 .navbar .brand {
     display: flex;
 }
 .navbar img {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     margin-left: 20px;
     filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.4));
     cursor: pointer;
@@ -356,4 +353,36 @@ h4 {
     align-items: center;
     justify-content: center;
     margin-bottom: 100px;
+}
+
+  
+  .hyperspace {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+  }
+  
+  .star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: white;
+    animation: blink 1s infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
 }
