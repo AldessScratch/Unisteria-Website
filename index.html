@@ -14,6 +14,10 @@
     <meta property="og:image" content="/img/mainmenu.png">
     <meta content="#ffffff" data-react-helmet="true" name="theme-color">
     <meta name="twitter:card" content="summary_large_image">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="application/ld+json">{
       "@context": "http://schema.org",
       "@type": "Organization",
@@ -273,36 +277,36 @@
       </div>
     </div>
     <div class="main">
-      <div class="center">
+      <div class="center" data-aos="zoom-in">
         <h1 class="title">Unisteria</h1>
         <h4>Dominate your opponents with lots of modules.</h4>
         <div class="button">
-          <button class="download" onclick="window.open('https://qiwi.gg/file/db888619-Unisteria2')">Download</button>
-          <button class="discord" onclick="window.open('https://discord.gg/NxyC686228')"><i class="bx bxl-discord"></i> Join The Discord</button>
+          <button data-aos="zoom-in" class="download" onclick="window.open('https://qiwi.gg/file/db888619-Unisteria2')">Download</button>
+          <button data-aos="zoom-in" class="discord" onclick="window.open('https://discord.gg/NxyC686228')"><i class="bx bxl-discord"></i> Join The Discord</button>
         </div>
       </div>
     </div>
-    <div class="video" id="video">
+    <div data-aos="fade-right" class="video" id="video">
       <h3>Video</h3>
       <iframe class="videoyt" width="560" height="315" src="https://www.youtube.com/embed/csPayKrkzmk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
-    <div class="screenshot" id="screenshot">
+    <div data-aos="fade-left" class="screenshot" id="screenshot">
       <div class="screens">
         <!-- Ty w3school -->
-        <div class="slideshow-container">
+        <div id="slideshow" class="slideshow-container">
   
           <div class="mySlides fade">
-            <img onclick="window.open('./img/mainmenu.png')" src="./img/mainmenu.png" style="width:100%">
+            <img data-original="img/mainmenu.png" src="./img/mainmenu.png" style="width:100%">
             <div class="text">Main menu</div>
           </div>
           
           <div class="mySlides fade">
-            <img onclick="window.open('./img/clickgui.png')" src="./img/clickgui.png" style="width:100%">
+            <img data-original="img/clickgui.png" src="./img/clickgui.png" style="width:100%">
             <div class="text">ClickGUI</div>
           </div>
           
           <div class="mySlides fade">
-            <img onclick="window.open('./img/array.png')" src="./img/array.png" style="width:100%">
+            <img data-original="img/array.png" src="./img/array.png" style="width:100%">
             <div class="text">Array list</div>
           </div>
           
@@ -319,7 +323,7 @@
           </div>
       </div>
     </div>
-    <div class="social">
+    <div data-aos="fade-up" class="social">
       <h3>Socials</h3>
       <div class="socials" id="social">
         <img onclick="window.open('https://dsc.gg/unisteria')" src="./img/discord.png" alt="discord">
@@ -373,6 +377,17 @@ function showSlides(n) {
   observer.observe(document.querySelector('.screenshot'));
   observer.observe(document.querySelector('.socials'));
       </script>
-      
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          var galley = document.getElementById('slideshow');
+          var viewer = new Viewer(galley, {
+            url: 'data-original',
+            title: function (image) {
+              return image.alt + ' (' + (this.index + 1) + '/' + this.length + ')';
+            },
+          });
+        });
+        AOS.init();
+      </script>
 </body>
 </html>

@@ -8,7 +8,23 @@
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
 }
-
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    background-image: linear-gradient(60deg, #814ca3, #c011bd);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9b9b9b;
+  }
+.center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
 body {
     
     display: flex;
@@ -21,8 +37,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #A9C9FF;
-    background-image: linear-gradient(146deg, #371472 0%, #000000 100%);
+    background-color: #000;
 }
 .main {
     border-radius: 50px;
@@ -35,18 +50,25 @@ body {
     align-items: center;
     justify-content: center;
     height: 80vh;
-    animation-name: fadeIn;
-    animation-duration: 1.5s;
     filter: drop-shadow(2px 2px 5px rgba(61, 61, 61, 0.4));
     scroll-snap-align: center;
 }
 h1 {
+    text-align: center;
     font-size: 55px;
-    color: #fff;
+    background-color: #814ca3;
+  background-image: linear-gradient(60deg, #814ca3, #c011bd);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
     font-weight: 700;
     filter: drop-shadow(1px 1px 2px rgba(61, 61, 61, 0.4));
 }
 h4 {
+    text-align: center;
     color: #fff;
     filter: drop-shadow(1px 1px 2px rgba(61, 61, 61, 0.4));
     font-size: 25px;
@@ -95,23 +117,16 @@ i {
 }
 .download {
     background-color: #ffffff9e;
+    background-image: linear-gradient(60deg, #814ca3, #c011bd);
 }
 .donate {
     background-color: #ffffff6c;
+    background-image: linear-gradient(60deg, #814ca3, #c011bd);
 }
 .discord {
     background-color: #5f55d4;
 }
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+
 button:hover {
     background-color: #b4b4b46c;
     border: 1px solid #fff;
@@ -158,7 +173,6 @@ button:hover {
     font-size: 20px;
     font-weight: 500;
     color: white;
-    margin-left: 10px;
     cursor: pointer;
     color: #fff;
     filter: drop-shadow(1px 1px 2px rgba(61, 61, 61, 0.4));
@@ -215,8 +229,12 @@ footer p {
    filter: drop-shadow(2px 2px 3px rgb(0 0 0 / 0.4));
 }
 a {
+    margin-left: 10px;
     text-decoration: none;
     color: white;
+}
+a p:hover {
+    border-bottom: solid 2px #fff;
 }
 @media screen and (max-width: 600px) {
     .navbar p {
@@ -234,13 +252,7 @@ a {
     }
   }
   @media screen and (max-width: 900px) {
-    .center {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-    }h1 {text-align: center;}
-    h4 {text-align: center;}
+   
 
   }
   .video {
