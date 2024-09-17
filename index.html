@@ -3,412 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="keywords" content="Unisteria Client​, Unisteria, Unisteria Client V4.3 Minecraft Mod, Minecraft Mod, program,mod,minecraft,hack,hack-client">
-    <meta name="description" content="Dominate your opponents with lots of modules.">
-    <meta name="robots" content="index, follow">
-    <meta name="msapplication-TileColor" content="#FFFFFF">
-    <title>Unisteria Client</title>
-    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <title>AldessSc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <meta property="og:image" content="/img/mainmenu.png">
-    <meta content="#c011bd" data-react-helmet="true" name="theme-color">
-    <meta name="twitter:card" content="summary_large_image">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css">
+    <link rel="icon" type="image/x-icon" href="./img/logo.png">
+    <meta name="description" content="My website :D">
+    <meta property="og:image" content="/img/logo.png">
+    <meta content="#ffffff" data-react-helmet="true" name="theme-color">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="application/ld+json">{
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "name": "Unisteria Website",
-      "logo": "img/logo.png"
-  }</script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DJZ1J5T376"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DJZ1J5T376');
-</script>
-</head>
-<body>
-<script>const { TweenMax, _ } = window
-  /**
-   * Utility function for returning a random integer in a given range
-   * @param {Int} max
-   * @param {Int} min
-   */
-  const randomInRange = (max, min) =>
-    Math.floor(Math.random() * (max - min + 1)) + min
-  const ACTIVE_PROBABILITY = 0
-  const BASE_SIZE = 2
-  const VELOCITY_INC = 1.01
-  const VELOCITY_INIT_INC = 1.025
-  const JUMP_VELOCITY_INC = 1.25
-  const JUMP_SIZE_INC = 1.15
-  const SIZE_INC = 1.01
-  const RAD = Math.PI / 180
-  const WARP_COLORS = [
-    [197, 239, 247],
-    [25, 181, 254],
-    [77, 5, 232],
-    [165, 55, 253],
-    [255, 255, 255],
-  ]
-  /**
-   * Class for storing the particle metadata
-   * position, size, length, speed etc.
-   */
-  class Star {
-    STATE = {
-      alpha: Math.random(),
-      angle: randomInRange(0, 360) * RAD,
-    }
-    reset = () => {
-      const angle = randomInRange(0, 360) * (Math.PI / 180)
-      const vX = Math.cos(angle)
-      const vY = Math.sin(angle)
-      const travelled =
-        Math.random() > 0.5
-          ? Math.random() * Math.max(window.innerWidth, window.innerHeight) + (Math.random() * (window.innerWidth * 0.24))
-          : Math.random() * (window.innerWidth * 0.25)
-      this.STATE = {
-        ...this.STATE,
-        iX: undefined,
-        iY: undefined,
-        active: travelled ? true : false,
-        x: Math.floor(vX * travelled) + window.innerWidth / 2,
-        vX,
-        y: Math.floor(vY * travelled) + window.innerHeight / 2,
-        vY,
-        size: BASE_SIZE,
-      }
-    }
-    constructor() {
-      this.reset()
-    }
-  }
-  
-  const generateStarPool = size => new Array(size).fill().map(() => new Star())
-  
-  // Class for the actual app
-  // Not too much happens in here
-  // Initiate the drawing process and listen for user interactions 👍
-  class JumpToHyperspace {
-    STATE = {
-      stars: generateStarPool(300),
-      bgAlpha: 0,
-      sizeInc: SIZE_INC,
-      velocity: VELOCITY_INC
-    }
-    canvas = document.createElement('canvas')
-    context = this.canvas.getContext('2d')
-    constructor() {
-      this.bind()
-      this.setup()
-      document.body.appendChild(this.canvas)
-      this.render()
-    }
-    render = () => {
-      const {
-        STATE: {
-          bgAlpha,
-          velocity,
-          sizeInc,
-          initiating,
-          jumping,
-          stars,
-        },
-        context,
-        render
-      } = this
-      // Clear the canvas
-      context.clearRect(0, 0, window.innerWidth, window.innerHeight)
-      if (bgAlpha > 0) {
-        context.fillStyle = `rgba(31, 58, 157, ${bgAlpha})`
-        context.fillRect(0, 0, window.innerWidth, window.innerHeight)
-      }
-      // 1. Shall we add a new star
-      const nonActive = stars.filter(s => !s.STATE.active)
-      if (!initiating && nonActive.length > 0) {
-        // Introduce a star
-        nonActive[0].STATE.active = true
-      }
-      // 2. Update the stars and draw them.
-      for (const star of stars.filter(s => s.STATE.active)) {
-        const { active, x, y, iX, iY, iVX, iVY, size, vX, vY } = star.STATE
-        // Check if the star needs deactivating
-        if (
-          ((iX || x) < 0 ||
-            (iX || x) > window.innerWidth ||
-            (iY || y) < 0 ||
-            (iY || y) > window.innerHeight) &&
-          active &&
-          !initiating
-        ) {
-          star.reset(true)
-        } else if (active) {
-          const newIX = initiating ? iX : iX + iVX
-          const newIY = initiating ? iY : iY + iVY
-          const newX = x + vX
-          const newY = y + vY
-          // Just need to work out if it overtakes the original line that's all
-          const caught =
-            (vX < 0 && newIX < x) ||
-            (vX > 0 && newIX > x) ||
-            (vY < 0 && newIY < y) ||
-            (vY > 0 && newIY > y)
-          star.STATE = {
-            ...star.STATE,
-            iX: caught ? undefined : newIX,
-            iY: caught ? undefined : newIY,
-            iVX: caught ? undefined : iVX * VELOCITY_INIT_INC,
-            iVY: caught ? undefined : iVY * VELOCITY_INIT_INC,
-            x: newX,
-            vX: star.STATE.vX * velocity,
-            y: newY,
-            vY: star.STATE.vY * velocity,
-            size: initiating ? size : size * (iX || iY ? SIZE_INC : sizeInc),
-          }
-          let color = `rgba(255, 255, 255, ${star.STATE.alpha})`
-          if (jumping) {
-            const [r, g, b] = WARP_COLORS[randomInRange(0, WARP_COLORS.length)]
-            color = `rgba(${r}, ${g}, ${b}, ${star.STATE.alpha})`
-          }
-          context.strokeStyle = color
-          context.lineWidth = size
-          context.beginPath()
-          context.moveTo(star.STATE.iX || x, star.STATE.iY || y)
-          context.lineTo(star.STATE.x, star.STATE.y)
-          context.stroke()
-        }
-      }
-      requestAnimationFrame(render)
-    }
-    initiate = () => {
-      if (this.STATE.jumping || this.STATE.initiating) return
-      this.STATE = {
-        ...this.STATE,
-        initiating: true,
-        initiateTimestamp: new Date().getTime(),
-      }
-      TweenMax.to(this.STATE, 0.25, {velocity: VELOCITY_INIT_INC, bgAlpha: 0.3})
-      // When we initiate, stop the XY origin from moving so that we draw
-      // longer lines until the jump
-      for (const star of this.STATE.stars.filter(s => s.STATE.active)) {
-        star.STATE = {
-          ...star.STATE,
-          iX: star.STATE.x,
-          iY: star.STATE.y,
-          iVX: star.STATE.vX,
-          iVY: star.STATE.vY,
-        }
-      }
-    }
-    jump = () => {
-      this.STATE = {
-        ...this.STATE,
-        bgAlpha: 0,
-        jumping: true,
-      }
-      TweenMax.to(this.STATE, 0.25, { velocity: JUMP_VELOCITY_INC, bgAlpha: 0.75, sizeInc: JUMP_SIZE_INC })
-      setTimeout(() => {
-        this.STATE = {
-          ...this.STATE,
-          jumping: false,
-        }
-        TweenMax.to(this.STATE, 0.25, { bgAlpha: 0, velocity: VELOCITY_INC, sizeInc: SIZE_INC })
-      }, 2500)
-    }
-    enter = () => {
-      if (this.STATE.jumping) return
-      const { initiateTimestamp } = this.STATE
-      this.STATE = {
-        ...this.STATE,
-        initiating: false,
-        initiateTimestamp: undefined,
-      }
-      if (new Date().getTime() - initiateTimestamp > 600) {
-        this.jump()
-      } else {
-        TweenMax.to(this.STATE, 0.25, {velocity: VELOCITY_INC, bgAlpha: 0})
-      }
-    }
-    bind = () => {
-      this.canvas.addEventListener('mousedown', this.initiate)
-      this.canvas.addEventListener('touchstart', this.initiate)
-      this.canvas.addEventListener('mouseup', this.enter)
-      this.canvas.addEventListener('touchend', this.enter)
-    }
-    setup = () => {
-      this.context.lineCap = 'round'
-      this.canvas.height = window.innerHeight
-      this.canvas.width = window.innerWidth
-    }
-    reset = () => {
-      this.STATE = {
-        ...this.STATE,
-        stars: generateStarPool(300)
-      }
-      this.setup()
-    }
-  }
-  window.myJump = new JumpToHyperspace()
-  window.addEventListener(
-    'resize',
-    _.debounce(() => {
-      window.myJump.reset()
-    }, 250)
-  )
-  </script>
-    <div class="navbar">
-      <div class="brand">
-        <img onclick="location.href = './'" src="./img/logo.png" alt="logo">
-        <h5 onclick="location.href = './'"></h5>
-      </div>
-      <div class="links">
-        <a href="#video"><p>Video</p></a>
-        <a href="#screenshot"><p>Screenshots</p></a>
-        <a href="#social"><p>Socials</p></a>
-        <a href="https://buymeacoffee.com/unisteriaclient"><button class="donate">Donate</button></a>
-      </div>
-    </div>
-    <div class="main">
-      <div class="center" data-aos="zoom-in">
-        <h1 class="title">Unisteria</h1>
-        <h4>Dominate your opponents with lots of modules.</h4>
-        <div class="button">
-          <button data-aos="zoom-in" class="download" onclick="window.open('https://qiwi.gg/file/db888619-Unisteria2')">Download</button>
-          <button data-aos="zoom-in" class="discord" onclick="window.open('https://dsc.gg/unisteriamod')"><i class="bx bxl-discord"></i> Join The Discord</button>
+</head> 
+<body style="background-image: url('./img/background.png')">
+    <div class="main  w-full flex justify-center items-center flex-col">
+        <div class="flex justify-center items-center flex-wrap mt-4 max-[430px]:w-full">
+            <div data-aos="zoom-in" id="idk" class="flex justify-center items-center flex-col h-[200px] w-[420px] card m-10 m-2 rounded-xl max-[430px]:w-full">
+                <div class="w-9/12">
+                    <div class="font-bold text-2xl my-1">Aldess</div>
+                    <div class="my-1 text-1xl">@aldesssc</div>
+                    <div class="my-1 text-[15px]">He / Him</div>
+                    <div class="my-1 text-2xl">
+                        <i class="bx bxl-discord-alt text-[#5865F2] cursor-pointer" onclick="window.open('https://discord.com/users/1001220536619249665')"></i>
+                        <i class="bx bxl-tiktok cursor-pointer" onclick="window.open('https://tiktok.com/@descroll')"></i>
+                        <i class="bx bxl-github cursor-pointer" onclick="window.open('https://github.com/AldessScratch')"></i>
+                        <i class='bx bx-shield tooltip'><span class="tooltiptext aa">Admin <a href="https://dsc.gg/hisb">@HISB</a> and Moderator <a href="https://discord.com/invite/soar-client-967307105516281917">@Soar Client</a></span></i>
+                        <i class='bx bx-code tooltip' ><span class="tooltiptext aa">Former web dev <a href="https://discord.com/invite/JUDvJc6X5B">@Aetherium Client</a></span></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center flex-wrap max-[430px]:w-full">
+                <div data-aos="zoom-in" id="timebg" class="flex justify-center items-center h-[200px] w-[200px] card m-10 m-2 rounded-xl max-[430px]:w-full">
+                    <div id="hours" class="text-4xl font-bold mb-4 mr-1"></div>
+                    <div id="mins" class="text-4xl font-bold mt-4 ml-1"></div>
+                </div>
+                <div data-aos="zoom-in" class="flex justify-center items-center flex-col h-[200px] w-[200px] card m-10 m-2 rounded-xl max-[430px]:w-full">
+                    <div id="daysRemaining" class="font-bold text-3xl my-3 rotate-[30deg] text-center"></div>
+                    <p id="untilbirthday" class="font-thin text-1xl my-3 rotate-[30deg]">until birthday</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div data-aos="zoom-out" class="features">
-      <h3>Features</h3>
-      <div class="cards">
-        <div class="card">
-          <i class='bx bx-history'></i>
-          <h5>Updates</h5>
-          <p>Unisteria Client is constantly updated with new features</p>
+        <div class="flex justify-center items-center flex-wrap max-[430px]:w-full">
+            <div data-aos="zoom-in" class="flex justify-center items-center flex-col h-[200px] w-[420px] card m-10 m-2 rounded-xl max-[430px]:w-full">
+                <div class="w-10/12">
+                    <div class="font-bold text-2xl my-1 items-center flex"><i class="bx bx-info-circle mr-2"></i> About me</div>
+                    <div class="my-1 text-[13px]">Hey, it's me Aldess :D, I'm a french teenager and I love coding, drawing and making videos. I learnt html and css 4 years ago then js gradually. I've currently lost interest in web dev and I'm focusing on content creation, though i recently made a website for a client owner and I've kinda gained back interest.</div>
+                </div>
+            </div>
+            <div data-aos="zoom-in" class="flex justify-center items-center flex-col h-[200px] w-[420px] card m-10 m-2 rounded-xl max-[430px]:w-full max-[870px]:mb-20">
+                <div class="w-10/12">
+                    <div class="font-bold text-2xl my-2 items-center flex"><i class='bx bx-code-alt mr-2'></i> Skillicons</div>
+                    <img src="https://skillicons.dev/icons?i=html,css,js,netlify,github,notion,vscode,cloudflare,tailwind,linux,windows&perline=6">
+                </div>
+            </div>
         </div>
-        <div class="card">
-          <i class='bx bx-heart'></i>
-          <h5>Bypass</h5>
-          <p>Unisteria Client bypass most of the servers</p>
+        <div class="flex justify-center items-center flex-wrap max-[430px]:w-full">
+            <div data-aos="zoom-in" class="flex justify-center items-center flex-col h-[200px] w-[420px] card m-10 m-2 rounded-xl max-[430px]:w-full max-[870px]:mb-20">
+                <div class="w-10/12">
+                    <div class="font-bold text-2xl my-2 items-center flex"><i class='bx bx-devices mr-2'></i> Devices</div>
+                    <div class="my-1 text-[13px]">Phone - Samsung Galaxy Note 20 Ultra</div>
+                    <div class="my-1 text-[13px]">Laptop - Samsung Galaxy Book 2 Pro 360 13"</div>
+                    <div class="my-1 text-[13px]">PC - Intel i7 9700K, GTX 1650 SUPER, 32GB DDR4</div>
+                </div>
+            </div>
+            <div data-aos="zoom-in" class="flex justify-center items-center flex-col h-[70px] w-[300px] card m-10 m-2 rounded-xl max-[430px]:w-full">
+                <div class="w-10/12 flex justify-center items-center">
+                    <div class="font-bold text-[20px] my-1 items-center flex"><i class="bx bx-grid-alt mr-2"></i> Things I made <i onclick="location.href = 'tim.html'" class="bx bx-link-external cursor-pointer ml-2"></i></div>
+                </div>
+            </div>
         </div>
-        <div class="card">
-          <i class='bx bx-support' ></i>
-          <h5>Helpful support</h5>
-          <p>Unisteria staff will always be there to help you</p>
-        </div>
-      </div>
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'U7U611SLTL');kofiwidget2.draw();</script> 
     </div>
-    <div data-aos="fade-right" class="video" id="video">
-      <h3>Video</h3>
-      <iframe class="videoyt" width="560" height="315" src="https://www.youtube.com/embed/csPayKrkzmk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-    <div data-aos="fade-left" class="screenshot" id="screenshot">
-      <div class="screens">
-        <h3>Screenshots</h3>
-        <!-- Ty w3school -->
-        <div id="slideshow" class="slideshow-container">
-  
-          <div class="mySlides fade">
-            <img data-original="img/mainmenu.png" src="./img/mainmenu.png" style="width:100%">
-            <div class="text">Main menu</div>
-          </div>
-          
-          <div class="mySlides fade">
-            <img data-original="img/clickgui.png" src="./img/clickgui.png" style="width:100%">
-            <div class="text">ClickGUI</div>
-          </div>
-          
-          <div class="mySlides fade">
-            <img data-original="img/array.png" src="./img/array.png" style="width:100%">
-            <div class="text">Array list</div>
-          </div>
-          
-          <a class="prev" onclick="plusSlides(-1)"><i class="bx bx-left-arrow-alt"></i></a>
-          <a class="next" onclick="plusSlides(1)"><i class="bx bx-right-arrow-alt"></i></a>
-          
-          </div>
-          <br>
-          
-          <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span> 
-            <span class="dot" onclick="currentSlide(2)"></span> 
-            <span class="dot" onclick="currentSlide(3)"></span> 
-          </div>
-      </div>
-    </div>
-    <div data-aos="fade-up" class="social">
-      <h3>Socials</h3>
-      <div class="socials" id="social">
-        <img onclick="window.open('https://dsc.gg/unisteria')" src="./img/discord.png" alt="discord">
-        <img class="x" onclick="window.open('https://x.com/lunauwi')" src="./img/x.png" alt="x">
-        <img onclick="window.open('https://www.youtube.com/watch?v=csPayKrkzmk')" src="./img/youtube.png" alt="youtube">
-      </div>
-    </div>
-    <footer>
-        <p class="left">&copy; Copyright 2022-2023 Unisteria</p>
-        <p class="right">Client made by <a href="https://discord.com/users/1126195578221629440">qqLuna</a> & limuix | Website made by <a href="http://github.com/aldessscratch">aldesssc</a></p>
-    </footer>
     <script>
-      let slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-    </script>
-    <script>
-        const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fadein-animation');
-      }
-    });
-  });
-  
-  observer.observe(document.querySelector('.main'));
-  observer.observe(document.querySelector('.video'));
-  observer.observe(document.querySelector('.screenshot'));
-  observer.observe(document.querySelector('.socials'));
-      </script>
-      <script>
-        window.addEventListener('DOMContentLoaded', function () {
-          var galley = document.getElementById('slideshow');
-          var viewer = new Viewer(galley, {
-            url: 'data-original',
-            title: function (image) {
-              return image.alt + ' (' + (this.index + 1) + '/' + this.length + ')';
-            },
-          });
-        });
         AOS.init();
-      </script>
+    </script>
+    <script src="script.js"></script>
+    
 </body>
 </html>
